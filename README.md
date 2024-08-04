@@ -43,8 +43,6 @@ Este projeto é um sistema de autenticação básico desenvolvido com FastAPI. A
 
     Abra o navegador e acesse `http://127.0.0.1:8000`.
 
-Para melhorar a visibilidade e organização da estrutura dos arquivos no README do seu projeto, você pode adicionar descrições mais detalhadas e utilizar marcadores para criar uma hierarquia clara. Aqui está um exemplo de como você pode fazer isso:
-
 ## Estrutura do Projeto
 
 ```plaintext
@@ -56,14 +54,22 @@ auth_api/
 │   ├── __init__.py                             # Inicialização do módulo app e definições das rotas da API
 │   ├── main.py                                 # Arquivo principal da aplicação
 │   │
+│   ├── application/                            # Pasta de aplicação com casos de uso
+│   │   ├── __init__.py                         # Inicialização do módulo application
+│   │   └── register_user_uc.py                 # Caso de uso de registro de usuário
+│   │
 │   ├── models/                                 # Pasta de modelos
 │   │   ├── request_models/                     # Pasta de modelos de request
 │   │   │   └── register_user.py                # Modelo de requisição de registro de usuário
 │   │   └── response_models/                    # Pasta de modelos de response
-│   │       └── some_response.py                # Modelo de resposta (exemplo)
+│   │       └── register_user.py                # Modelo de resposta de registro de usuário
 │   │
 │   ├── schemas.py                              # Definições dos schemas da API
-│   ├── utils.py                                # Funções utilitárias
+│   │
+│   ├── utils/                                  # Funções utilitárias
+│   │   ├── __init__.py                         # Inicialização do módulo utils
+│   │   ├── interface_security.py               # Interface de Hash
+│   │   └── security.py                         # Funções de segurança
 │   │
 │   ├── controller/                             # Pasta de controllers
 │   │   └── authentication_controller.py        # Controller de fluxos de usuário
@@ -84,15 +90,21 @@ auth_api/
 
 - **alembic/**: Diretório para migrações de banco de dados.
 - **app/**: Diretório principal da aplicação.
-  - **\_\_init\_\_.py**: Arquivo de inicialização do módulo `app`.
+  - **\_\_init\_\_.py**: Arquivo de inicialização do módulo `app` e definição das rotas da API.
   - **main.py**: Arquivo principal que inicia a aplicação FastAPI.
+  - **application/**: Pasta de aplicação com casos de uso.
+    - **\_\_init\_\_.py**: Arquivo de inicialização do módulo `application`.
+    - **register_user_uc.py**: Caso de uso para registro de usuário.
   - **models/**: Diretório para os modelos Pydantic.
     - **request_models/**: Modelos para requisições (input).
       - **register_user.py**: Modelo de requisição para registro de usuário.
     - **response_models/**: Modelos para respostas (output).
-      - **some_response.py**: (exemplo) Modelo de resposta.
-  - **schemas.py**: Definição dos schemas da API.
-  - **utils.py**: Funções utilitárias.
+      - **register_user.py**: Modelo de resposta para registro de usuário.
+  - **schemas.py**: Definições dos schemas da API.
+  - **utils/**: Funções utilitárias.
+    - **\_\_init\_\_.py**: Arquivo de inicialização do módulo `utils`.
+    - **interface_security.py**: Interface de hash para segurança.
+    - **security.py**: Funções de segurança, incluindo hash e validação de senhas.
   - **controller/**: Diretório para os controladores da aplicação.
     - **authentication_controller.py**: Controlador para fluxos de autenticação de usuário.
   - **tags.py**: Definição de tags para a documentação da API.
@@ -103,8 +115,6 @@ auth_api/
 - **requirements-dev.txt**: Lista de dependências para desenvolvimento.
 - **setup.py**: Script para configuração e instalação do projeto.
 - **Makefile**: Arquivo para automatização de tarefas comuns (opcional).
-
-Essa estrutura e descrições adicionais no README ajudarão os desenvolvedores a entenderem rapidamente a organização do projeto e a finalidade de cada pasta e arquivo.
 
 ## Endpoints da API
 
