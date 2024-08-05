@@ -1,3 +1,4 @@
+alembic==1.13.2
 annotated-types==0.7.0
 anyio==4.4.0
 bcrypt==4.2.0
@@ -7,11 +8,14 @@ dnspython==2.6.1
 email_validator==2.2.0
 exceptiongroup==1.2.2
 fastapi==0.112.0
+greenlet==3.0.3
 h11==0.14.0
 httpcore==1.0.5
 httptools==0.6.1
 idna==3.7
 iniconfig==2.0.0
+Mako==1.3.5
+MarkupSafe==2.1.5
 packaging==24.1
 pluggy==1.5.0
 pydantic==2.8.2
@@ -19,6 +23,7 @@ pydantic_core==2.20.1
 python-dotenv==1.0.1
 PyYAML==6.0.1
 sniffio==1.3.1
+SQLAlchemy==2.0.31
 starlette==0.37.2
 tomli==2.0.1
 typing_extensions==4.12.2
