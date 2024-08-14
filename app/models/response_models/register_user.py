@@ -1,9 +1,13 @@
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class RegisterUserResponse(BaseModel):
+    id: str
     username: str
     email: str
-    password: str
-    password_is_valid: bool
-    hash_password: bytes
+    is_active: bool
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
