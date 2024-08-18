@@ -1,4 +1,5 @@
 import re
+from app.exceptions.user_exceptions import UserEmailException, UserPasswordException
 from pydantic import BaseModel, field_validator, EmailStr
 
 
@@ -11,32 +12,32 @@ class UserCreate(UserBase):
 
     @field_validator("password")
     def validate_password(cls, password):
-        if len(password) < 8:
-            raise ValueError("Password must be at least 8 characters long.")
-
-        # Uppercase and lowercase letters
-        if not re.search(r"[A-Z]", password) or not re.search(r"[a-z]", password):
-            raise ValueError(
-                "Password must contain at least one uppercase and one lowercase letter.")
-
-        # Numbers
-        if not re.search(r"\d", password):
-            raise ValueError("Password must contain at least one number.")
-
-        # Special characters
-        if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
-            raise ValueError(
-                "Password must contain at least one special character.")
-
         # Common passwords
         common_passwords = ["password", "123456",
                             "123456789", "qwerty", "abc123"]
         if password in common_passwords:
-            raise ValueError("Password is too common.")
-
+            raise UserPasswordException("Password is too common.")
+        
         # Sequences
         if re.search(r"(0123456789|abcdefghijklmnopqrstuvwxyz|ABCDEFGHIJKLMNOPQRSTUVWXYZ)", password):
-            raise ValueError("Password cannot contain simple sequences.")
+            raise UserPasswordException("Password cannot contain simple sequences.")
+        
+        if len(password) < 8:
+            raise UserPasswordException("Password must be at least 8 characters long.")
+
+        # Uppercase and lowercase letters
+        if not re.search(r"[A-Z]", password) or not re.search(r"[a-z]", password):
+            raise UserPasswordException(
+                "Password must contain at least one uppercase and one lowercase letter.")
+
+        # Numbers
+        if not re.search(r"\d", password):
+            raise UserPasswordException("Password must contain at least one number.")
+
+        # Special characters
+        if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+            raise UserPasswordException(
+                "Password must contain at least one special character.")
 
         return password
 
@@ -46,11 +47,11 @@ class UserCreate(UserBase):
         forbidden_domains = ["example.com", "test.com"]
         domain = email.split('@')[1]
         if domain in forbidden_domains:
-            raise ValueError("Email domain is not allowed.")
+            raise UserEmailException("Email domain is not allowed.")
 
         # Maximum length
         if len(email) > 256:
-            raise ValueError("Email must be at most 256 characters long.")
+            raise UserEmailException("Email must be at most 256 characters long.")
 
         return email
 
