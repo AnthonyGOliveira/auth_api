@@ -1,11 +1,10 @@
+# tests/test_user.py
 from datetime import datetime, timezone
-from fastapi import FastAPI
-from fastapi.testclient import TestClient
 from app.main import app
+from app.dependencies.database_dependency import get_db, get_test_db
 
-
-class TestRegisterUseCaseSuccess:
-    host: str = "/api/authentication/user/register"
+class TestIntegrationRegisterUseCaseSuccess:
+    host: str = "/api/authentication/user/register"    
 
     def test_execute(self, test_client):
         request = {
