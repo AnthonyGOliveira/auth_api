@@ -1,5 +1,6 @@
 from app.dependencies.database_dependency import get_db
 from app.infrastructure.database_engine import Base
+import logging
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -7,6 +8,10 @@ from sqlalchemy.pool import StaticPool
 from fastapi.testclient import TestClient
 from app.main import app
 
+# Configurar logging
+logging.basicConfig(level=logging.INFO)
+logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
+logger = logging.getLogger(__name__)
 
 # SQLite database URL for testing
 SQLITE_DATABASE_URL = "sqlite:///./test_db.db"
@@ -31,10 +36,13 @@ def db_session():
     connection = engine.connect()
     transaction = connection.begin()
     session = TestingSessionLocal(bind=connection)
-    yield session
-    session.close()
-    transaction.rollback()
-    connection.close()
+    try:
+        yield session
+    finally:
+        logger.info("Closing session and rolling back transaction")
+        session.close()
+        transaction.rollback()
+        connection.close()
 
 
 @pytest.fixture(scope="function")
