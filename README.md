@@ -61,8 +61,28 @@ auth_api/
 │   ├── models/                                 # Pasta de modelos
 │   │   ├── request_models/                     # Pasta de modelos de request
 │   │   │   └── register_user.py                # Modelo de requisição de registro de usuário
-│   │   └── response_models/                    # Pasta de modelos de response
-│   │       └── register_user.py                # Modelo de resposta de registro de usuário
+│   │   ├── response_models/                    # Pasta de modelos de response
+│   │   │   └── register_user.py                # Modelo de resposta de registro de usuário
+│   │   └── database_models/                    # Pasta de modelos de banco de dados
+│   │       └── user.py                         # Modelo de registro de usuário
+│   │
+│   ├── models/                                 # Pasta de mappers
+│   │   ├── mapper_interface.py                 # Interface de mapper
+│   │   └── user_mapper.py                      # Mapper de usuário
+│   │
+│   ├── dto/                                    # Pasta de mappers
+│   │   ├── dto_interface.py                    # Interface de dto
+│   │   └── user_dto.py                         # Dto de usuário
+│   │
+│   ├── repository/                             # Pasta de repository
+│   │   ├── implementation/                     # Pasta de implementações de repository
+│   │   │   └── user_repository.py              # Implementação de repository de usuário
+│   │   └── interface/                          # Pasta de interfaces de repository
+│   │       └── user_repository.py              # Interface de repository de usuário
+│   │
+│   ├── service/                                # Pasta de services
+│   │   ├── interface_user_service.py           # Interface de service de usuário
+│   │   └── user_service.py                     # Service de usuário
 │   │
 │   ├── schemas.py                              # Definições dos schemas da API
 │   │
@@ -74,7 +94,11 @@ auth_api/
 │   ├── controller/                             # Pasta de controllers
 │   │   └── authentication_controller.py        # Controller de fluxos de usuário
 │   │
-│   └── tags.py                                 # Tags de documentação
+│   ├── tags.py                                 # Tags de documentação
+│   │
+│   └── test/                                   # Pasta de testes
+│       ├── integration/                        # Testes de itegração
+│       └── conftest.py                         # Configurações de teste
 │
 ├── venv/                                       # Ambiente virtual
 │
@@ -100,6 +124,22 @@ auth_api/
       - **register_user.py**: Modelo de requisição para registro de usuário.
     - **response_models/**: Modelos para respostas (output).
       - **register_user.py**: Modelo de resposta para registro de usuário.
+    - **database_models/**: Modelos de banco de dados.
+      - **user.py**: Modelo de banco de dados para usuários.
+  - **mappers/**: Diretório para mappers de entidades.
+    - **mapper_interface.py**: Interface para mappers.
+    - **user_mapper.py**: Implementação do mapper para usuários.
+  - **dto/**: Diretório para objetos de transferência de dados (DTOs).
+    - **dto_interface.py**: Interface para DTOs.
+    - **user_dto.py**: Implementação do DTO para usuários.
+  - **repository/**: Diretório para repositórios de acesso a dados.
+    - **interface/**: Interfaces de repositórios.
+      - **user_repository.py**: Interface do repositório de usuários.
+    - **implementation/**: Implementações de repositórios.
+      - **user_repository.py**: Implementação do repositório de usuários.
+  - **service/**: Diretório para serviços da aplicação.
+    - **interface_user_service.py**: Interface para o serviço de usuários.
+    - **user_service.py**: Implementação do serviço de usuários.
   - **schemas.py**: Definições dos schemas da API.
   - **utils/**: Funções utilitárias.
     - **\_\_init\_\_.py**: Arquivo de inicialização do módulo `utils`.
@@ -108,6 +148,10 @@ auth_api/
   - **controller/**: Diretório para os controladores da aplicação.
     - **authentication_controller.py**: Controlador para fluxos de autenticação de usuário.
   - **tags.py**: Definição de tags para a documentação da API.
+  - **test/**: Diretório para os testes automatizados.
+    - **integration/**: Testes de integração para a aplicação.
+    - **conftest.py**: Arquivo de configuração para os testes, como fixtures.
+
 - **venv/**: Ambiente virtual para isolamento de dependências.
 - **.gitignore**: Arquivo que especifica quais arquivos/pastas devem ser ignorados pelo Git.
 - **README.md**: Documentação principal do projeto.
@@ -139,6 +183,7 @@ auth_api/
             "id": "uuid",
             "username": "string",
             "email": "string",
+            "is_active": "boolean",
             "createdAt": "timestamp"
         }
         ```
