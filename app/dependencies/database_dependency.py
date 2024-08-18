@@ -1,4 +1,5 @@
-from app.infrastructure.database_engine import SessionLocal
+from app.infrastructure.database_engine import Base, SessionLocal, engine
+
 
 def get_db():
     db = SessionLocal()
@@ -6,3 +7,13 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+def get_test_db():
+    Base.metadata.create_all(bind=engine)
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
+        Base.metadata.drop_all(bind=engine)

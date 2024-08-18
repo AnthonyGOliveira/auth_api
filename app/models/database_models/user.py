@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from app.models.database_models.interface_database_model import IDatabaseModel
 from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from app.infrastructure.database_engine import Base
 import uuid
