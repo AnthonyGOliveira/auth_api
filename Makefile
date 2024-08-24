@@ -5,6 +5,7 @@ PIP=$(VENV_DIR)/bin/pip
 UVICORN=$(VENV_DIR)/bin/uvicorn
 ALEMBIC=$(VENV_DIR)/bin/alembic
 PYTEST=$(VENV_DIR)/bin/pytest
+COVOPTS=--cov=app --cov-config=.coveragerc --cov-report=html --cov-report=term
 
 # Criar o ambiente virtual
 .PHONY: venv
@@ -37,11 +38,16 @@ migrate:
 makemigrations:
 	$(ALEMBIC) revision --autogenerate -m "Nova migração"
 
-# Executar os testes
-.PHONY: test
-test:
-	$(PYTEST)
+# Limpar relatórios de cobertura antigos
+.PHONY: clean-cov
+clean-cov:
+	rm -rf htmlcov
 
+# Executar os testes e gerar cobertura HTML
+.PHONY: test
+test: clean-cov
+	$(PYTEST) $(COVOPTS)
+	
 # Limpar o ambiente
 .PHONY: clean
 clean:
