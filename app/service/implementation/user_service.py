@@ -4,7 +4,7 @@ from app.exceptions.user_exceptions import UserAlreadyExistsException
 from app.mapper.user_mapper import UserMapper
 from app.models.database_models.user import User
 from app.repository.interface.interface_user_repository import IUserRepository
-from app.service.interface_user_service import IUserService
+from app.service.interface.interface_user_service import IUserService
 from sqlalchemy.exc import IntegrityError
 
 

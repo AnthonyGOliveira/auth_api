@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.application.authentication_uc import AuthenticationUseCase
 from app.dependencies.database_dependency import get_db
 from app.repository.implementation.user_repository import UserRepository
-from app.service.user_service import UserService
+from app.service.implementation.user_service import UserService
 from app.utils.security import HashValidator
 
 

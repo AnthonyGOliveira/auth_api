@@ -1,6 +1,6 @@
 from app.dto.dto_interface import IDto
 from app.dto.user_dto import UserDto
-from app.service.interface_user_service import IUserService
+from app.service.interface.interface_user_service import IUserService
 from app.utils.interface_security import IHashValidator
 
 

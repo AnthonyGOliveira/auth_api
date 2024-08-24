@@ -1,6 +1,6 @@
 from app.application.user_register_uc import UserRegisterUseCase
 from app.repository.implementation.user_repository import UserRepository
-from app.service.user_service import UserService
+from app.service.implementation.user_service import UserService
 from app.utils.security import HashValidator
 from sqlalchemy.orm import Session
 from fastapi import Depends
