@@ -1,0 +1,24 @@
+[run]
+omit =
+    app/__init__.py
+    app/application/__init__.py
+    app/controller/__init__.py
+    app/dependencies/__init__.py
+    app/dto/__init__.py
+    app/dto/dto_interface.py
+    app/exceptions/__init__.py
+    app/infrastructure/__init__.py
+    app/mapper/__init__.py
+    app/mapper/mapper_interface.py
+    app/models/__init__.py
+    app/models/database_models/__init__.py
+    app/models/database_models/interface_database_model.py
+    app/models/request_models/__init__.py
+    app/models/response_models/__init__.py
+    app/repository/__init__.py
+    app/repository/implementation/__init__.py
+    app/repository/interface/__init__.py
+    app/repository/interface/interface_user_repository.py
+    app/service/__init__.py
+    app/utils/__init__.py
+    app/utils/interface_security.py
