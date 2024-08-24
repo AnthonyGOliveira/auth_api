@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import ast
 from app.controller.user_controller import router as user_router
+from app.controller.authentication_controller import router as authentication_router
 from app.infrastructure.database_engine import Base, engine
 from app.infrastructure.config import settings
 
@@ -22,6 +23,7 @@ app.add_middleware(
 )
 
 app.include_router(router=user_router, prefix='/api/authentication/user')
+app.include_router(router=authentication_router, prefix='/api/authentication')
 
 
 @app.get("/api/authentication/health")
