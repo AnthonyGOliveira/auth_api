@@ -11,5 +11,9 @@ class IUserService(ABC):
         self.repository = repository
 
     @abstractmethod
-    def execute(self, user) -> any:
+    def add_user(self, user) -> any:
+        pass
+
+    @abstractmethod
+    def find_user_by_user_name(self, username: str) -> any:
         pass

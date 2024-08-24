@@ -12,3 +12,7 @@ class IUserRepository(ABC):
     @abstractmethod
     def add_user(self, user: IDto) -> any:
         pass
+
+    @abstractmethod
+    def find_user_by_user_name(self, username: str) -> any:
+        pass

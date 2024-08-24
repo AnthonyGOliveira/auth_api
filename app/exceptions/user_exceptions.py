@@ -14,3 +14,7 @@ class UserPasswordException(HTTPException):
 class UserEmailException(HTTPException):
     def __init__(self, detail: str = "Email exception"):
         super().__init__(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=detail)
+        
+class UsernameOrPasswordIncorrectException(HTTPException):
+    def __init__(self, detail: str = "Username or password is incorrect"):
+        super().__init__(status_code=status.HTTP_400_BAD_REQUEST, detail=detail)

@@ -18,3 +18,7 @@ class UserRepository(IUserRepository):
         self.db.commit()
         self.db.refresh(user_model)
         return user_model
+
+    def find_user_by_user_name(self, username: str) -> any:
+        query = self.db.query(User).filter(User.username == username)
+        return query.first()
