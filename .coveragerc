@@ -22,3 +22,8 @@ omit =
     app/service/__init__.py
     app/utils/__init__.py
     app/utils/interface_security.py
+    app/service/interface/interface_secret_service.py
+    app/service/interface/interface_user_service.py
+    app/dependencies/database_dependency.py
+    app/service/implementation/__init__.py
+    app/service/interface/__init__.py
