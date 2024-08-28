@@ -56,7 +56,8 @@ auth_api/
 │   │
 │   ├── application/                            # Pasta de aplicação com casos de uso
 │   │   ├── __init__.py                         # Inicialização do módulo application
-│   │   └── register_user_uc.py                 # Caso de uso de registro de usuário
+│   │   ├── register_user_uc.py                 # Caso de uso de registro de usuário
+|   |   └── authentication_uc.py                # Caso de uso de autenticação
 │   │
 │   ├── models/                                 # Pasta de modelos
 │   │   ├── request_models/                     # Pasta de modelos de request
@@ -70,6 +71,11 @@ auth_api/
 │   │   ├── mapper_interface.py                 # Interface de mapper
 │   │   └── user_mapper.py                      # Mapper de usuário
 │   │
+│   ├── infrastructure/                         # Pasta de infraestrutura
+│   │   ├── __init__.py                         # Inicialização do módulo infrastructure
+│   │   ├── config.py                           # Arquivo de configurações e variáveis de ambiente
+│   │   └── database_engine.py                  # Arquivo de engine de banco de dados
+│   │
 │   ├── dto/                                    # Pasta de mappers
 │   │   ├── dto_interface.py                    # Interface de dto
 │   │   └── user_dto.py                         # Dto de usuário
@@ -81,8 +87,12 @@ auth_api/
 │   │       └── user_repository.py              # Interface de repository de usuário
 │   │
 │   ├── service/                                # Pasta de services
-│   │   ├── interface_user_service.py           # Interface de service de usuário
-│   │   └── user_service.py                     # Service de usuário
+│   │   ├── implementation/                     # Pasta de implementações de service
+│   │   │   ├── user_service.py                 # Service de usuário
+│   │   │   └── secret_service.py               # Service de geração de token
+│   │   └── interface/                          # Pasta de interfaces de service
+│   │       ├── interface_user_service.py       # Interface de service de usuário
+│   │       └── interface_secret_service.py     # Interface de service de geração de token
 │   │
 │   ├── schemas.py                              # Definições dos schemas da API
 │   │
@@ -92,7 +102,9 @@ auth_api/
 │   │   └── security.py                         # Funções de segurança
 │   │
 │   ├── controller/                             # Pasta de controllers
-│   │   └── authentication_controller.py        # Controller de fluxos de usuário
+│   │   ├── __init__.py                         # Inicialização do módulo controller
+│   │   ├── authentication_controller.py        # Controller de fluxos de usuário
+│   │   └── authentication_controller.py        # Controller de fluxos de autenticação
 │   │
 │   ├── tags.py                                 # Tags de documentação
 │   │
@@ -107,7 +119,9 @@ auth_api/
 ├── requirements.txt                            # Dependências do projeto
 ├── requirements-dev.txt                        # Dependências de desenvolvimento
 ├── setup.py                                    # Script de configuração do projeto
+├── .coveragerc                                 # Arquivo para ignorar files no pytest
 └── Makefile                                    # Automação de tarefas
+
 ```
 
 ### Descrição das Pastas e Arquivos
